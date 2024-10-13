@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Diary App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_diary_lock">Diary With Lock</string>
+    <string name="label_description_diary_lock">Store your memories in a safe and secure way!</string>
+    <string name="label_btn_next">Next</string>
+    <string name="label_title_mood_graph">Mood graph</string>
+    <string name="label_description_mood_graph">We can show which part of the year kept you happy, sad or angry with cool graphs!</string>
+    <string name="label_title_search_diary">Search diary</string>
+    <string name="label_description_search_diary">Effortlessly search your diary to relive a particular memory!</string>
+    <string name="label_title_vault">Most secure</string>
+    <string name="label_description_vault">Save memmories with PIN, Face lock and intruder selfie</string>
+</resources>
