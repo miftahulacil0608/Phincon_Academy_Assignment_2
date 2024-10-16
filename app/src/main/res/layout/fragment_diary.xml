@@ -37,12 +37,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_diary"
-        tools:listitem="@layout/item_diary_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:paddingHorizontal="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchview" />
+        app:layout_constraintTop_toBottomOf="@id/searchview"
+        tools:listitem="@layout/item_diary_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
