@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_menu"
+        android:icon="@drawable/ic_home"
+        android:title="@string/label_home" />
+    <item
+        android:id="@+id/mood_menu"
+        android:icon="@drawable/ic_mood"
+        android:title="@string/label_mood" />
+    <item
+        android:id="@+id/add_menu"
+        android:enabled="false"
+        android:title="" />
+    <item
+        android:id="@+id/diary_menu"
+        android:icon="@drawable/ic_diary"
+        android:title="@string/label_diary" />
+    <item
+        android:id="@+id/setting_menu"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/label_settings" />
+</menu>

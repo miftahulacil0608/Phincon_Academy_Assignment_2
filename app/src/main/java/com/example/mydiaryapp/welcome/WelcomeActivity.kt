@@ -22,4 +22,8 @@ class WelcomeActivity : AppCompatActivity() {
             .add(R.id.fragment_container, OnBoardingOneFragment())
             .commit()
     }
+
+    companion object{
+        const val KEY_TO_WELCOME_ACTIVITY = "KEY TO WELCOME ACTIVITY"
+    }
 }

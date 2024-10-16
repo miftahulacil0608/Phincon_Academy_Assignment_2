@@ -11,4 +11,78 @@
     <string name="label_description_search_diary">Effortlessly search your diary to relive a particular memory!</string>
     <string name="label_title_vault">Most secure</string>
     <string name="label_description_vault">Save memmories with PIN, Face lock and intruder selfie</string>
+    <string name="label_register">Register</string>
+    <string name="label_sub_heading_register">Let\'s get started!</string>
+    <string name="label_input_email_and_passowrd"><![CDATA[Input your Email Address & Password]]></string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="label_hint_password">Must contain atleast 6 character</string>
+    <string name="label_hint_email">user@email.com</string>
+    <string name="label_alternative_authentication">Already have Account? Login</string>
+    <string name="label_login">Login</string>
+    <string name="label_alternative_authentication_register">Don\'t have Account? Register</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.\n\n
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.\n\n
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.\n\n
+        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
+        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
+        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
+        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    </string>
+    <string name="label_home">Home</string>
+    <string name="label_mood">Mood</string>
+    <string name="label_diary">Diary</string>
+    <string name="label_settings">Settings</string>
+    <string name="label_view_all">View All</string>
+    <string name="label_recently_added">Recently added</string>
+    <string name="label_title_item_diary">First day in work</string>
+    <string name="label_description_item_diary">Vivamus ornare metus ut interdum mollis. Donec hendrerit elit at faucibus</string>
+    <string name="label_profile">Profile</string>
+    <string name="label_detail_diary">Vivamus ornare metus ut interdum mollis.
+        Donec hendrerit elit at faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sem felis, lobortis et nisl eget, lacinia blandit mi. Aliquam cursus risus ac odio luctus, a dignissim tortor ultrices. Ut quis fringilla sem. Quisque ultricies justo metus, eget hendrerit est malesuada sit amet. Aenean imperdiet diam nunc, laoreet congue urna vestibulum sit amet. Vivamus at dolor eget nisl imperdiet faucibus.</string>
+    <string name="label_share">Share</string>
+    <string name="label_edit">Edit</string>
+    <string name="label_delete">Delete</string>
+    <string name="label_submit">Submit</string>
+    <string name="label_headline">Headline</string>
+    <string name="label_body">Start typing</string>
+    <string name="label_username">Username</string>
+    <string name="label_hint_username">Your Username</string>
+    <string name="label_headline_personal_details">Personal details</string>
+    <string name="label_account_settings">Account</string>
+    <string name="label_logout">Logout</string>
 </resources>

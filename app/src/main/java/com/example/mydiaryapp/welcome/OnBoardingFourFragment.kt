@@ -1,14 +1,15 @@
 package com.example.mydiaryapp.welcome
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.mydiaryapp.R
+import com.example.mydiaryapp.authentication.AuthenticationActivity
+import com.example.mydiaryapp.authentication.RegisterFragment
 import com.example.mydiaryapp.databinding.FragmentOnBoardingFourBinding
-import com.example.mydiaryapp.databinding.FragmentOnBoardingOneBinding
-import com.example.mydiaryapp.databinding.FragmentOnBoardingThreeBinding
 
 class OnBoardingFourFragment : Fragment() {
     private var _binding: FragmentOnBoardingFourBinding? = null
@@ -26,6 +27,7 @@ class OnBoardingFourFragment : Fragment() {
         binding.btnNextOnBoardingFour.setOnClickListener {
             //TODO save state login = true
             //TODO move to main activity
+            startActivity(Intent(requireActivity(), AuthenticationActivity::class.java))
         }
     }
 
