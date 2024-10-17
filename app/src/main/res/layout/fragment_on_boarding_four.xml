@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".welcome.OnBoardingFourFragment">
+    tools:context=".presentation.welcome.OnBoardingFourFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo_diary_top_onBoarding_four"

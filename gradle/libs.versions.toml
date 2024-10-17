@@ -1,5 +1,6 @@
 [versions]
 agp = "8.5.0"
+datastorePreferences = "1.1.1"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -12,8 +13,14 @@ constraintlayout = "2.1.4"
 navigationFragmentKtx = "2.8.2"
 navigationUiKtx = "2.8.2"
 
+room_version = "2.6.1"
+ksp = "1.9.10-1.0.13"
+
+hilt_version = "2.51.1"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -24,7 +31,16 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
+
+androidx-room-runtime = {group = "androidx.room", name = "room-runtime",version.ref = "room_version"}
+androidx-room-ktx = {group = "androidx.room", name = "room-ktx",version.ref = "room_version"}
+androidx-ksp = {group = "androidx.room", name = "room-compiler",version.ref = "room_version"}
+android-hilt-dagger ={group="com.google.dagger",name="hilt-android", version.ref="hilt_version"}
+android-hilt-compiler={group="com.google.dagger", name="hilt-android-compiler", version.ref="hilt_version"}
+
 [plugins]
+androidx-hilt = {id="com.google.dagger.hilt.android", version.ref = "hilt_version"}
+androidx-ksp = {id="com.google.devtools.ksp",version.ref="ksp"}
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
