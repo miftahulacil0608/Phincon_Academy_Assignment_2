@@ -41,12 +41,11 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbarSetup()
-        buttonBackTop()
         buttonBackSetup()
         moveToRegisterSetup()
 
         binding.btnLogin.setOnClickListener {
-            val username = binding.inputEditUsername.text.toString()
+            val username = binding.inputEditUsername.text.toString().trim()
             val password = binding.inputEditPassword.text.toString()
             viewLifecycleOwner.lifecycleScope.launch {
                 val isValid = authenticationViewModel.loginAccount(username, password)
@@ -65,27 +64,10 @@ class LoginFragment : Fragment() {
         val toolbarActivity = (activity as AppCompatActivity)
         toolbarActivity.setSupportActionBar(binding.toolbar)
         toolbarActivity.supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarActivity.supportActionBar?.setHomeButtonEnabled(true)
-        toolbarActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     //Button back toolbar
-    private fun buttonBackTop() {
-        val menu: MenuHost = requireActivity()
-        menu.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when (menuItem.itemId) {
-                    android.R.id.home -> {
-                        requireActivity().finish()
-                        true
-                    }
 
-                    else -> false
-                }
-            }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-    }
 
     //Button back
     private fun buttonBackSetup() {

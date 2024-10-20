@@ -1,3 +1,12 @@
 package com.example.mydiaryapp.domain.model
 
-data class User(val id: Int ?= null, val username: String, val email: String, val password: String)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class User(
+    val id: Int? = null,
+    val username: String,
+    val email: String,
+    val password: String
+) : Parcelable

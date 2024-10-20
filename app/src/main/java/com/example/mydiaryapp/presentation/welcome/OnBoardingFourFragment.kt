@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import com.example.mydiaryapp.R
 import com.example.mydiaryapp.presentation.authentication.AuthenticationActivity
 import com.example.mydiaryapp.presentation.authentication.RegisterFragment
@@ -26,6 +27,7 @@ class OnBoardingFourFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnNextOnBoardingFour.setOnClickListener {
             startActivity(Intent(requireActivity(), AuthenticationActivity::class.java))
+            requireActivity().finish()
         }
     }
 

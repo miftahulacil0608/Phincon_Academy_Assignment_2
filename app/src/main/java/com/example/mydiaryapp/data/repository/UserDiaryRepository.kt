@@ -9,4 +9,7 @@ interface UserDiaryRepository {
     suspend fun login(username:String, password:String):User?
     suspend fun logout()
     fun getSessionId():Int?
+    suspend fun getUser(userId:Int):Flow<User>
+    suspend fun updateData(user: User):Boolean
+
 }

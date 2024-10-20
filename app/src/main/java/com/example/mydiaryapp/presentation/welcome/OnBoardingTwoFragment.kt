@@ -25,13 +25,12 @@ class OnBoardingTwoFragment : Fragment() {
         binding.btnNextOnBoardingTwo.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
+                .setCustomAnimations(R.anim.slide_down_enter, R.anim.slide_down_exit)
                 .replace(R.id.fragment_container, OnBoardingThreeFragment())
                 .addToBackStack(null)
                 .commit()
         }
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -29,9 +29,13 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnEditAccount.setOnClickListener {
-            val intent = Intent(requireContext(), PersonalActivity::class.java)
-            startActivity(intent)
+        dashBoardViewModel.getUser().observe(viewLifecycleOwner){userData->
+            binding.btnEditAccount.setOnClickListener {
+                val intent = Intent(requireContext(), PersonalActivity::class.java).apply {
+                    putExtra(PersonalActivity.KEY_TO_EDIT_DATA, userData)
+                }
+                startActivity(intent)
+            }
         }
 
         binding.btnEditLogout.setOnClickListener {

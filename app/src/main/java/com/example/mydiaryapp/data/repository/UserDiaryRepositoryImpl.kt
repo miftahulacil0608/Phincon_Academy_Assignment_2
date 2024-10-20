@@ -2,9 +2,12 @@ package com.example.mydiaryapp.data.repository
 
 import com.example.mydiaryapp.data.MapperDataClass.toUser
 import com.example.mydiaryapp.data.MapperDataClass.toUserEntity
+import com.example.mydiaryapp.data.MapperDataClass.toUserEntityEdit
 import com.example.mydiaryapp.data.source.local.datastore.UserDiaryDataStoreRepository
 import com.example.mydiaryapp.data.source.local.room.user.UserRoomRepository
 import com.example.mydiaryapp.domain.model.User
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class UserDiaryRepositoryImpl @Inject constructor(
@@ -43,7 +46,20 @@ class UserDiaryRepositoryImpl @Inject constructor(
         return dataStoreUser.getSessionId()
     }
 
+    override suspend fun getUser(userId: Int): Flow<User> {
+        return databaseUser.getUser(userId).map {
+            it.toUser()
+        }
+    }
 
+    override suspend fun updateData(user: User):Boolean {
+        return try {
+            databaseUser.updateData(user.toUserEntityEdit())
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
 
 
 }

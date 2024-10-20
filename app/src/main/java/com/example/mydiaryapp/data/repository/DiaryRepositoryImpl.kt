@@ -25,13 +25,7 @@ class DiaryRepositoryImpl @Inject constructor(private val diaryRoomRepository: D
         )
     }
 
-    override fun getListDiary(userOwnerId: Int): Flow<List<Diary>> {
-        return diaryRoomRepository.getListDiary(userOwnerId).map {
-            it.toDiary()
-        }
-    }
-
-    override suspend fun getDiary(diaryId: Int): Flow<Diary?> {
+    override fun getDiary(diaryId: Int): Flow<Diary?> {
         return diaryRoomRepository.getDiary(diaryId).map {
             it?.toDiary()
         }
@@ -65,11 +59,16 @@ class DiaryRepositoryImpl @Inject constructor(private val diaryRoomRepository: D
         userDiaryDataStoreRepository.saveSettingDiary(sortBy, orderBy)
     }
 
-    override suspend fun getDiarySetting(): Flow<SettingDiaryUser> {
+    override fun getDiarySetting(): Flow<SettingDiaryUser> {
         return userDiaryDataStoreRepository.getDiarySetting().map {
             it.toSettingDiaryUser()
         }
     }
 
+    override fun getDiaryRecentlyAdded(userOwnerId: Int): Flow<Diary?> {
+        return diaryRoomRepository.getDiaryRecentlyAdded(userOwnerId).map{
+            it?.toDiary()
+        }
+    }
 
 }

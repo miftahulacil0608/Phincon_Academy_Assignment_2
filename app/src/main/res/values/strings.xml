@@ -93,4 +93,8 @@
     <string name="label_created_date">Created Date</string>
     <string name="label_ascending">Ascending</string>
     <string name="label_descending">Descending</string>
+    <string name="label_title_detail_diary">Detail Diary</string>
+    <string name="label_menu_sorting">Sorting</string>
+    <string name="label_say_hello">Hello, %s</string>
+    <string name="label_update_data">Update Data</string>
 </resources>

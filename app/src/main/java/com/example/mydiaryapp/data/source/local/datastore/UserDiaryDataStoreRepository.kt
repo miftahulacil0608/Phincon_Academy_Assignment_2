@@ -8,5 +8,5 @@ interface UserDiaryDataStoreRepository {
     suspend fun logoutSession()
     fun getSessionId():Int?
     suspend fun saveSettingDiary(sortBy:String, orderBy:String)
-    suspend fun getDiarySetting(): Flow<SettingDiary>
+    fun getDiarySetting(): Flow<SettingDiary>
 }

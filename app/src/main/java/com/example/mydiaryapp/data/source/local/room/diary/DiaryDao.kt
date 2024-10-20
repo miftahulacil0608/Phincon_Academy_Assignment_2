@@ -15,12 +15,11 @@ interface DiaryDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addDiary(diaryEntity: DiaryEntity)
 
-    //TODO Sementara untuk selectnya
-    @Query("SELECT * FROM diary_entity WHERE user_owner_id LIKE :userOwnerId")
-    fun getListDiary(userOwnerId: Int): Flow<List<DiaryEntity>>
-
     @Query("SELECT * FROM diary_entity WHERE diary_id LIKE :diaryId")
     fun getDiary(diaryId: Int): Flow<DiaryEntity?>
+
+    @Query("SELECT * FROM diary_entity WHERE user_owner_id LIKE :userOwnerId ORDER BY diary_date DESC")
+    fun getDiaryRecentlyAdded(userOwnerId: Int):Flow<DiaryEntity?>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateDiary(diaryEntity: DiaryEntity)
@@ -38,8 +37,8 @@ interface DiaryDao {
         ORDER BY
         CASE WHEN :sortBy = 'headline' AND :sortOrder = 'ASC' THEN diary_headline END ASC,
         CASE WHEN :sortBy = 'headline' AND :sortOrder = 'DESC' THEN diary_headline END DESC,
-         CASE WHEN :sortBy = 'date' AND :sortOrder = 'ASC' THEN diary_message END ASC,
-        CASE WHEN :sortBy = 'date' AND :sortOrder = 'DESC' THEN diary_message END DESC
+        CASE WHEN :sortBy = 'date' AND :sortOrder = 'ASC' THEN diary_date END ASC,
+        CASE WHEN :sortBy = 'date' AND :sortOrder = 'DESC' THEN diary_date END DESC
     """
     )
     fun getResultSortingListDiary(userOwnerId: Int, sortBy: String, sortOrder: String):Flow<List<DiaryEntity>>

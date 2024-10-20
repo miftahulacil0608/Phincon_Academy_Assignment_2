@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_profile">
+        app:menu="@menu/menu_sorting">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="wrap_content"
@@ -34,13 +34,6 @@
         android:queryBackground="@android:color/transparent"
         android:queryHint="Search"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:id="@+id/sorting"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/searchview"
-        app:layout_constraintBottom_toBottomOf="@id/searchview"
-        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_diary"

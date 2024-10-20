@@ -29,6 +29,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             startActivity(Intent(this@DashboardActivity, AddAndUpdateDiaryActivity::class.java))
         }
+
         binding.bottomNavigationView.setOnItemSelectedListener(object : OnItemSelectedListener {
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
                 return when (item.itemId) {
@@ -58,7 +59,6 @@ class DashboardActivity : AppCompatActivity() {
                 }
             }
         })
-
     }
 
     private fun setupFragmentUI(fragment: Fragment) {

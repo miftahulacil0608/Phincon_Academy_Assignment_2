@@ -23,7 +23,7 @@ class UserDiaryDataStoreImpl @Inject constructor(private val dataStore: UserDiar
         dataStore.saveSettingDiary(sortBy, orderBy)
     }
 
-    override suspend fun getDiarySetting(): Flow<SettingDiary> {
+    override fun getDiarySetting(): Flow<SettingDiary> {
         return dataStore.getSettingDiary()
     }
 

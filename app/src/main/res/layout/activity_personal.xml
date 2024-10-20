@@ -132,7 +132,7 @@
         android:layout_marginTop="19dp"
         android:background="@drawable/bg_custom_button"
         android:paddingVertical="16dp"
-        android:text="@string/label_register"
+        android:text="@string/label_update_data"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:backgroundTint="@null"

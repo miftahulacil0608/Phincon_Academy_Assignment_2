@@ -11,6 +11,7 @@ import com.example.mydiaryapp.domain.AuthenticationUseCase
 import com.example.mydiaryapp.domain.DiaryUseCase
 import com.example.mydiaryapp.domain.model.Diary
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,23 +19,27 @@ import javax.inject.Inject
 class DashBoardViewModel @Inject constructor(
     private val authenticationUseCase: AuthenticationUseCase,
     private val diaryUseCase: DiaryUseCase
-) :
-    ViewModel() {
-    private val _listDiary = MutableLiveData<List<Diary>?>()
-    val listDiary: LiveData<List<Diary>?> = _listDiary
+) : ViewModel() {
 
     private val _itemDiary = MutableLiveData<Diary?>()
     val itemDiary: LiveData<Diary?> = _itemDiary
 
-    //dilakukan disini berarti untuk fitur listnya, bisa ditambahkan untuk dinit aja valuenya di dalam listDiary saja
-    fun getListDiary() {
-        viewModelScope.launch {
-            diaryUseCase.getListDiary().collect {
-                _listDiary.value = it
-            }
+    //fragment home
+    fun getUser() = liveData {
+        authenticationUseCase.getUser().collect{
+            emit(it)
         }
     }
 
+    fun getDiaryRecentlyAdded() = liveData {
+        diaryUseCase.getDiaryRecentlyAdded().collect{
+            emit(it)
+        }
+    }
+    //end fragment home
+
+
+    //fragment diary
     fun saveSettingDiary(sortBy: String, orderBy: String) {
         viewModelScope.launch {
             diaryUseCase.saveSettingDiary(sortBy, orderBy)
@@ -42,15 +47,15 @@ class DashBoardViewModel @Inject constructor(
     }
 
     fun getSettingDiary() = liveData {
-        diaryUseCase.getDiarySetting().collect{
+        diaryUseCase.getDiarySetting().collect {
             emit(it)
             Log.d("Setting Diary User", "getSettingDiary: ${it.sortBy} and ${it.orderBy}")
         }
 
     }
 
-    fun getResultSortingListDiary() = liveData{
-        diaryUseCase.getResultSortingListDiary().collect{
+    fun getResultSortingListDiary() = liveData {
+        diaryUseCase.getResultSortingListDiary().collect {
             emit(it)
         }
     }
@@ -61,6 +66,9 @@ class DashBoardViewModel @Inject constructor(
         }
     }
 
+    //end fragment diary
+
+    //fragment detail diary
     fun getItemDiary(diaryId: Int) {
         viewModelScope.launch {
             diaryUseCase.getDiary(diaryId).collect {
@@ -75,6 +83,9 @@ class DashBoardViewModel @Inject constructor(
         }
     }
 
+    //end fragment detail diary
+
+    //setting fragment
     fun logout() {
         viewModelScope.launch {
             authenticationUseCase.logout()

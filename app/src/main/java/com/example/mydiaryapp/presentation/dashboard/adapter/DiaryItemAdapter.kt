@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydiaryapp.databinding.ItemDiaryLayoutBinding
 import com.example.mydiaryapp.domain.model.Diary
+import com.example.mydiaryapp.presentation.Helper.toFormatDatesUI
 
 class DiaryItemAdapter(private var listItem:List<Diary> = emptyList(), private val listenerItem:ItemClickListener):RecyclerView.Adapter<DiaryItemAdapter.MyViewHolder>() {
     inner class MyViewHolder(private val binding: ItemDiaryLayoutBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(item:Diary){
+            binding.tvDate.text = item.diaryDate.toFormatDatesUI()
             binding.titleItemDiary.text = item.diaryHeadline
             binding.descriptionItemDiary.text = item.diaryMessage
 

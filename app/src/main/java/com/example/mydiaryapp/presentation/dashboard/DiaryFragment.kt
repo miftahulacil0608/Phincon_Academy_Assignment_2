@@ -1,15 +1,24 @@
 package com.example.mydiaryapp.presentation.dashboard
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mydiaryapp.R
 import com.example.mydiaryapp.databinding.FilterLayoutBinding
@@ -35,16 +44,15 @@ class DiaryFragment : Fragment(), ItemClickListener, SearchView.OnQueryTextListe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupDataListDiary()
 
+        provideToolbar()
 
-        dashBoardViewModel.getResultSortingListDiary().observe(viewLifecycleOwner){
+        dashBoardViewModel.getResultSortingListDiary().observe(viewLifecycleOwner) {
             adapter.initNewValue(it)
         }
+
         setupRecyclerView()
-        binding.sorting.setOnClickListener {
-            sortingDialog()
-        }
+
 
         //searchview
         val searchView = binding.searchview
@@ -52,19 +60,44 @@ class DiaryFragment : Fragment(), ItemClickListener, SearchView.OnQueryTextListe
 
     }
 
+    private fun provideToolbar() {
+        val toolbar = (activity as AppCompatActivity)
+        toolbar.setSupportActionBar(binding.toolbar)
+        toolbar.supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_sorting, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.item_sorting_menu -> {
+                        sortingDialog()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        },viewLifecycleOwner,Lifecycle.State.RESUMED)
+    }
+
     private fun sortingDialog() {
         val filterBinding = FilterLayoutBinding.inflate(layoutInflater)
         val dialog = AlertDialog.Builder(requireContext()).create()
         dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setView(filterBinding.root)
 
-        dashBoardViewModel.getSettingDiary().observe(viewLifecycleOwner){
+
+        dashBoardViewModel.getSettingDiary().observe(viewLifecycleOwner) {
             Log.d("setting value", "sortingDialog: ${it.sortBy} ${it.orderBy}")
-            when(it.sortBy){
-                "headline"->filterBinding.byHeadline.isChecked = true
+            when (it.sortBy) {
+                "headline" -> filterBinding.byHeadline.isChecked = true
                 "date" -> filterBinding.byDate.isChecked = true
             }
-            when(it.orderBy){
+            when (it.orderBy) {
                 "ASC" -> filterBinding.byAscending.isChecked = true
                 "DESC" -> filterBinding.byDescending.isChecked = true
             }
@@ -74,15 +107,31 @@ class DiaryFragment : Fragment(), ItemClickListener, SearchView.OnQueryTextListe
             val sortByRadio = filterBinding.radioGroupSortBy.checkedRadioButtonId
             val orderByRadio = filterBinding.radioGroupRangeBy.checkedRadioButtonId
 
-            val sortBy = when(sortByRadio){
-                filterBinding.byHeadline.id -> {"headline"}
-                filterBinding.byDate.id -> {"date"}
-                else -> {"headline"}
+            val sortBy = when (sortByRadio) {
+                filterBinding.byHeadline.id -> {
+                    "headline"
+                }
+
+                filterBinding.byDate.id -> {
+                    "date"
+                }
+
+                else -> {
+                    "headline"
+                }
             }
-            val orderBy = when(orderByRadio){
-                filterBinding.byAscending.id -> {"ASC"}
-                filterBinding.byDescending.id -> {"DESC"}
-                else->{"ASC"}
+            val orderBy = when (orderByRadio) {
+                filterBinding.byAscending.id -> {
+                    "ASC"
+                }
+
+                filterBinding.byDescending.id -> {
+                    "DESC"
+                }
+
+                else -> {
+                    "ASC"
+                }
             }
 
             dashBoardViewModel.saveSettingDiary(sortBy, orderBy)
@@ -95,10 +144,6 @@ class DiaryFragment : Fragment(), ItemClickListener, SearchView.OnQueryTextListe
         }
 
         dialog.show()
-    }
-
-    private fun setupDataListDiary() {
-        dashBoardViewModel.getListDiary()
     }
 
     private fun setupRecyclerView() {

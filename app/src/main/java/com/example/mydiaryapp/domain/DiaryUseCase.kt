@@ -23,8 +23,16 @@ class DiaryUseCase @Inject constructor(
         }
     }
 
-    suspend fun getDiary(diaryId: Int): Flow<Diary?> {
+    fun getDiary(diaryId: Int): Flow<Diary?> {
         return diaryRepository.getDiary(diaryId)
+    }
+
+    fun getDiaryRecentlyAdded():Flow<Diary?>{
+        return if (userOwnerId!=null) {
+            diaryRepository.getDiaryRecentlyAdded(userOwnerId)
+        }else{
+            emptyFlow()
+        }
     }
 
     suspend fun updateDiary(diary: Diary) {
@@ -43,20 +51,11 @@ class DiaryUseCase @Inject constructor(
         }
     }
 
-    //nanti bisa diganti
-    fun getListDiary(): Flow<List<Diary>> {
-        return if (userOwnerId != null) {
-            diaryRepository.getListDiary(userOwnerId)
-        } else {
-            emptyFlow()
-        }
-    }
-
     suspend fun saveSettingDiary(sortBy: String, orderBy: String) {
         diaryRepository.saveDiarySetting(sortBy, orderBy)
     }
 
-    suspend fun getDiarySetting(): Flow<SettingDiaryUser> {
+    fun getDiarySetting(): Flow<SettingDiaryUser> {
         return diaryRepository.getDiarySetting()
     }
 

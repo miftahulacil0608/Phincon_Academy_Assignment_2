@@ -4,26 +4,23 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.PopupMenu.OnMenuItemClickListener
-import androidx.core.view.MenuHost
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import com.example.mydiaryapp.R
 import com.example.mydiaryapp.databinding.FragmentDetailDiaryBinding
 import com.example.mydiaryapp.domain.model.Diary
+import com.example.mydiaryapp.presentation.Helper.toFormatDatesUI
 import com.example.mydiaryapp.presentation.dashboard.modificationDiary.AddAndUpdateDiaryActivity
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -40,6 +37,10 @@ class DetailDiaryFragment : Fragment() {
         }
     }
 
+    private val sourceFragment by lazy {
+        arguments?.getInt("SOURCE_FRAGMENT")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,9 +51,8 @@ class DetailDiaryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.menu.setOnClickListener {
-            menu()
-        }
+
+        provideToolbar()
 
         userData?.let {
             dashBoardViewModel.getItemDiary(it.diaryId)
@@ -62,43 +62,58 @@ class DetailDiaryFragment : Fragment() {
 
     }
 
-    private fun menu() {
-        //TODO icon show
-        val popupMenu = PopupMenu(requireContext(), binding.menu)
-        popupMenu.inflate(R.menu.menu_item_detail_diary)
-        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
-            override fun onMenuItemClick(item: MenuItem): Boolean {
-                return when (item.itemId) {
-                    R.id.item_share_menu -> {
-                        //itent implicit ke wa atau apapun yg terima text
-                        Toast.makeText(requireContext(), "share", Toast.LENGTH_SHORT).show()
+    private fun provideToolbar(){
+        val toolbar = (activity as AppCompatActivity)
+        toolbar.setSupportActionBar(binding.toolbar)
+        toolbar.supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbar.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.supportActionBar?.setHomeButtonEnabled(true)
+
+        requireActivity().addMenuProvider(object :MenuProvider{
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_item_detail_diary, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when(menuItem.itemId){
+                    android.R.id.home ->{
+                        if (sourceFragment!=null){
+                            parentFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_Container_dashboard, HomeFragment())
+                                .commit()
+                        }else{
+                            parentFragmentManager.popBackStack()
+                        }
                         true
                     }
-
+                    R.id.item_share_menu -> {
+                        true
+                        //implicit intent
+                    }
                     R.id.item_edit_menu -> {
-                        //ke halaman create tapi sambil membawa data
-                        Toast.makeText(requireContext(), "edit", Toast.LENGTH_SHORT).show()
                         editData()
                         true
                     }
-
-                    R.id.item_delete_menu -> {
-                        //delete filenya lalu pindah ke halaman diary
+                    R.id.item_delete_menu->{
                         deleteItemDiary()
                         true
                     }
-
-                    else -> false
+                    else -> {
+                        false
+                    }
                 }
             }
-        })
-        popupMenu.show()
+
+        },viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
+
 
 
     private fun setupItemDiary() {
         dashBoardViewModel.itemDiary.observe(viewLifecycleOwner) {
+            binding.tvTitleDate.text = it?.diaryDate?.toFormatDatesUI()
             binding.titleItemDiary.text = it?.diaryHeadline
+            binding.tvDate.text = it?.diaryDate?.toFormatDatesUI()
             binding.descriptionItemDiary.text = it?.diaryMessage
         }
     }

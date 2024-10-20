@@ -26,6 +26,7 @@ class OnBoardingThreeFragment : Fragment() {
         binding.btnNextOnBoardingThree.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
+                .setCustomAnimations(R.anim.slide_down_enter, R.anim.slide_down_exit)
                 .replace(R.id.fragment_container, OnBoardingFourFragment())
                 .addToBackStack(null)
                 .commit()

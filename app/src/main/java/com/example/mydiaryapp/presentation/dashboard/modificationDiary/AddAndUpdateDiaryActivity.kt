@@ -39,29 +39,49 @@ class AddAndUpdateDiaryActivity : AppCompatActivity() {
         }
 
         binding.btnSubmit.setOnClickListener {
-            val headline = binding.textInputEditHeadline.text.toString()
-            val message = binding.textInputEditBody.text.toString()
-            val diaryDate = dates()
-            if (getIntentValue!=null){
-                editDiary(userOwnerId = getIntentValue.userOwnerId, diaryId = getIntentValue.diaryId, newHeadline = headline, newMessage = message ,diaryDate = diaryDate)
-            }else{
-                addDiary(headline = headline, message = message, diaryDate = diaryDate)
+            val isValid = provideValidation()
+            if (isValid){
+                val headline = binding.textInputEditHeadline.text.toString()
+                val message = binding.textInputEditBody.text.toString()
+                val diaryDate = dates()
+                if (getIntentValue != null) {
+                    editDiary(
+                        userOwnerId = getIntentValue.userOwnerId,
+                        diaryId = getIntentValue.diaryId,
+                        newHeadline = headline,
+                        newMessage = message,
+                        diaryDate = diaryDate
+                    )
+                } else {
+                    addDiary(headline = headline, message = message, diaryDate = diaryDate)
+                }
             }
+
         }
         //TODO checking input cek kalo kosong gabisa di submit lah ya
 
         backPressed()
     }
 
-    private fun getIntentValue():Diary?{
-        return  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+    private fun provideValidation(): Boolean {
+        if (binding.textInputEditHeadline.text?.isEmpty() == true) {
+            binding.textInputEditHeadline.error = "Not Null"
+            return false
+        } else {
+            binding.textInputEditHeadline.error = null
+            return true
+        }
+    }
+
+    private fun getIntentValue(): Diary? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra("KEY_TO_UPDATE", Diary::class.java)
         } else {
             intent.getParcelableExtra("KEY_TO_UPDATE")
         }
     }
 
-    private fun dates():String{
+    private fun dates(): String {
         val currentDateTime = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy hh:mm:ss")
         val current = currentDateTime.format(formatter)
@@ -69,17 +89,38 @@ class AddAndUpdateDiaryActivity : AppCompatActivity() {
         return current
     }
 
-    private fun addDiary(headline:String, message:String,diaryDate:String){
-        addUpdateActivityViewModel.addDiary( headline, message, diaryDate)
-        Toast.makeText(this@AddAndUpdateDiaryActivity, "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+    private fun addDiary(headline: String, message: String, diaryDate: String) {
+        addUpdateActivityViewModel.addDiary(headline, message, diaryDate)
+        Toast.makeText(
+            this@AddAndUpdateDiaryActivity,
+            "Data Berhasil ditambahkan",
+            Toast.LENGTH_SHORT
+        ).show()
+        finish()
     }
 
-    private fun editDiary(userOwnerId:Int, diaryId:Int, newHeadline:String, newMessage: String, diaryDate:String){
-        addUpdateActivityViewModel.updateDiary(Diary(userOwnerId, diaryId, newHeadline, newMessage, diaryDate))
-        Toast.makeText(this@AddAndUpdateDiaryActivity, "Data Berhasil dirubah", Toast.LENGTH_SHORT).show()
+    private fun editDiary(
+        userOwnerId: Int,
+        diaryId: Int,
+        newHeadline: String,
+        newMessage: String,
+        diaryDate: String
+    ) {
+        addUpdateActivityViewModel.updateDiary(
+            Diary(
+                userOwnerId,
+                diaryId,
+                newHeadline,
+                newMessage,
+                diaryDate
+            )
+        )
+        Toast.makeText(this@AddAndUpdateDiaryActivity, "Data Berhasil dirubah", Toast.LENGTH_SHORT)
+            .show()
+        finish()
     }
 
-    private fun setupToolbar(){
+    private fun setupToolbar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -87,22 +128,25 @@ class AddAndUpdateDiaryActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             android.R.id.home -> {
                 finish()
                 true
             }
-            else ->{
+
+            else -> {
                 super.onOptionsItemSelected(item)
             }
         }
     }
 
-    private fun backPressed(){
-        onBackPressedDispatcher.addCallback(this@AddAndUpdateDiaryActivity, object :OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                finish()
-            }
-        })
+    private fun backPressed() {
+        onBackPressedDispatcher.addCallback(
+            this@AddAndUpdateDiaryActivity,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    finish()
+                }
+            })
     }
 }

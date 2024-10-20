@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#F3F3F3"
     tools:context=".presentation.dashboard.DashboardActivity">
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_Container_dashboard"
         android:layout_width="match_parent"

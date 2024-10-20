@@ -16,15 +16,31 @@ object MapperDataClass {
         )
     }
 
+    fun User.toUserEntityEdit(): UserEntity {
+        return UserEntity(
+            id = this.id ?: 0,
+            username = this.username,
+            email = this.email,
+            password = this.password
+        )
+    }
+
     fun UserEntity.toUser(): User {
         return User(this.id, this.username, this.email, this.password)
     }
 
     fun List<DiaryEntity>.toDiary(): List<Diary> {
         return this.map {
-            Diary(it.userOwnerId, it.diaryId, it.diaryHeadline, it.diaryMessage, diaryDate = it.diaryDate)
+            Diary(
+                it.userOwnerId,
+                it.diaryId,
+                it.diaryHeadline,
+                it.diaryMessage,
+                diaryDate = it.diaryDate
+            )
         }
     }
+
     fun DiaryEntity.toDiary(): Diary {
         return Diary(
             this.userOwnerId,
@@ -45,7 +61,7 @@ object MapperDataClass {
         )
     }
 
-    fun SettingDiary.toSettingDiaryUser():SettingDiaryUser{
+    fun SettingDiary.toSettingDiaryUser(): SettingDiaryUser {
         return SettingDiaryUser(this.sortBy, this.orderBy)
     }
 }

@@ -16,7 +16,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:menu="@menu/menu_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:paddingEnd="10dp"
@@ -25,6 +24,7 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="26dp"
                     android:src="@drawable/ic_mini_app" />
             </com.google.android.material.appbar.MaterialToolbar>
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="28dp"
                     android:letterSpacing="0.01"
-                    android:text="Hello, Azisz"
+                    android:text="@string/label_say_hello"
                     android:textColor="#5F5F5F"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -208,36 +208,18 @@
                 android:paddingEnd="24dp"
                 android:paddingBottom="34dp">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/mood_user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_happy"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:src="@drawable/ic_menu"
-                    android:background="@null"
-                    app:layout_constraintBottom_toBottomOf="@id/mood_user"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/mood_user" />
-
                 <LinearLayout
                     android:id="@+id/layout_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:background="@drawable/bg_custom_date"
                     android:backgroundTint="#00FFFF"
                     android:orientation="horizontal"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="4dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/mood_user">
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/iv_clock"
@@ -250,7 +232,7 @@
                         android:id="@+id/tv_date"
                         style="@style/TextStyle.Title.Small"
                         android:fontFamily="@font/manrope_regular"
-                        android:text="15 October 2024" />
+                        tools:text="15 October 2024" />
                 </LinearLayout>
 
                 <com.google.android.material.textview.MaterialTextView

@@ -10,12 +10,7 @@ class DiaryRoomImpl @Inject constructor(private val database:DiaryDatabase):Diar
         database.diaryDao().addDiary(diaryEntity)
     }
 
-    //ini bisa tanpa suspend function untuk contractnya, tapi waktu digunakan diviewmodel/usecase wajib suspend/viewmodelscope.launch
-    override fun getListDiary(userOwnerId:Int): Flow<List<DiaryEntity>> {
-        return database.diaryDao().getListDiary(userOwnerId)
-    }
-
-    override suspend fun getDiary(diaryId:Int): Flow<DiaryEntity?> {
+    override fun getDiary(diaryId:Int): Flow<DiaryEntity?> {
         return database.diaryDao().getDiary(diaryId)
     }
 
@@ -37,5 +32,9 @@ class DiaryRoomImpl @Inject constructor(private val database:DiaryDatabase):Diar
         sortOrder: String
     ): Flow<List<DiaryEntity>> {
         return database.diaryDao().getResultSortingListDiary(userOwnerId, sortBy, sortOrder)
+    }
+
+    override fun getDiaryRecentlyAdded(userOwnerId: Int): Flow<DiaryEntity?> {
+        return database.diaryDao().getDiaryRecentlyAdded(userOwnerId)
     }
 }
