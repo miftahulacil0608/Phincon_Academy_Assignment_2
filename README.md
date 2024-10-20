@@ -15,60 +15,79 @@
    Fitur lengkap untuk mengelola catatan harian, termasuk membuat, mengedit, dan menghapus catatan.
 
 5. Pengurutan (Sorting)
-   
+
    Pengguna dapat mengurutkan catatan harian berdasarkan:
 
-      Judul (Ascending/Descending)
+         Judul (Ascending/Descending)
 
-      Tanggal (Ascending/Descending)
+         Tanggal (Ascending/Descending)
+7. Pencarian (Search)
 
-      Pencarian (Search)
+   Pengguna dapat mencari catatan harian berdasarkan:
 
-  . Pengguna dapat mencari catatan harian berdasarkan:
-      . Judul
-      . Tanggal pembuatan
+         Judul
+         Tanggal pembuatan
 
 ## Struktur Aplikasi
 1. Splashscreen Activity
-   . Layar splash pertama saat aplikasi dibuka.
+
+   Layar splash pertama saat aplikasi dibuka.
 
 2. Welcome Activity
 
-3. Aktivitas onboarding dengan 4 fragment:
-  . Fragment OneBoarding
-  . Fragment TwoBoarding
-  . Fragment ThreeBoarding
-  . Fragment FourBoarding
+   Aktivitas onboarding dengan 4 fragment:
 
-3. Authentication Activity
-  . Aktivitas otentikasi pengguna:
-    . Login Fragment
-    . Register Fragment
+         Fragment OneBoarding
 
-4. Dashboard Activity (dengan bottom navigation manual)
-  . Navigasi utama dalam aplikasi dengan beberapa fragment:
-    . Home Fragment
-    . Mood Fragment
-    . Add Diary Fragment
-    . Diary List Fragment
-    . Detail Diary Fragment (terhubung dengan Diary List)
-    . Setting Fragment
+         Fragment TwoBoarding
+  
+         Fragment ThreeBoarding
+
+         Fragment FourBoarding
+
+4. Authentication Activity
+
+   Aktivitas otentikasi pengguna:
+
+         Login Fragment
+
+         Register Fragment
+
+6. Dashboard Activity (dengan bottom navigation manual)
+
+   Navigasi utama dalam aplikasi dengan beberapa fragment:
+
+         Home Fragment
+         Mood Fragment
+         Add Diary Fragment
+         Diary List Fragment
+         Detail Diary Fragment (terhubung dengan Diary List)
+         Setting Fragment
    
-5. Add Update Activity
-    . Aktivitas untuk menambah atau memperbarui catatan harian.
+7. Add Update Activity
 
-6. Personal Setting Activity
-  . Aktivitas untuk pengaturan personal pengguna.
+   Aktivitas untuk menambah atau memperbarui catatan harian.
+
+8. Personal Setting Activity
+
+   Aktivitas untuk pengaturan personal pengguna.
 
 ## Arsitektur
+
 Proyek ini menggunakan Clean Architecture dengan Dependency Injection (Hilt). Komponen arsitektur ini terdiri dari:
 
-. Domain Layer: Berisi UseCases yang mengatur logika bisnis utama.
-. Data Layer: Menggunakan Repository untuk mengelola data, dengan implementasi local storage menggunakan Room.
-. Presentation Layer: Menggunakan ViewModel untuk mengelola data yang ditampilkan di UI, serta LiveData dan StateFlow untuk memperbarui UI secara reaktif.
+      Domain Layer: Berisi UseCases yang mengatur logika bisnis utama.
+      
+      Data Layer: Menggunakan Repository untuk mengelola data, dengan implementasi local storage menggunakan Room.
+      
+      Presentation Layer: Menggunakan ViewModel untuk mengelola data yang ditampilkan di UI, serta LiveData dan StateFlow untuk memperbarui UI secara reaktif.
 
 ## Teknologi yang Digunakan:
-  . Room database untuk penyimpanan data lokal
-  . DataStore untuk menyimpan preferensi (misalnya pengaturan sorting pengguna)
-  . Kotlin Coroutines untuk operasi asinkron
-  . Hilt untuk Dependency Injection
+  
+     Room database untuk penyimpanan data lokal
+     
+     DataStore untuk menyimpan preferensi (misalnya pengaturan sorting pengguna)
+     
+     Kotlin Coroutines untuk operasi asinkron
+     
+     Hilt untuk Dependency Injection
