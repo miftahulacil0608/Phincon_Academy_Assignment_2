@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F3F3F3"
-    tools:context=".presentation.dashboard.AddFragment">
+    tools:context=".presentation.dashboard.modificationDiary.AddAndUpdateDiaryActivity">
 
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -18,22 +18,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_detail_diary">
 
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TextStyle.SmallHeading"
+        <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="26dp"
-            android:text="28 May 2021" />
+            android:src="@drawable/ic_mini_app" />
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <View
-        android:id="@+id/view"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_date"
+        style="@style/TextStyle.SmallHeading"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/bg_custom_searchview"
+        android:elevation="1dp"
+        android:text="@string/label_date"
+        android:textAlignment="center"
+        android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +49,7 @@
         android:layout_marginTop="12dp"
         android:background="@color/white"
         app:hintEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/view">
+        app:layout_constraintTop_toBottomOf="@id/tv_date">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_input_edit_headline"
@@ -70,8 +74,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_input_edit_body"
             android:layout_width="match_parent"
-            android:gravity="top"
             android:layout_height="match_parent"
+            android:gravity="top"
             android:hint="@string/label_body" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,10 +86,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="70dp"
-        android:background="@drawable/bg_custom_button"
         android:paddingVertical="16dp"
         android:text="@string/label_submit"
-        app:backgroundTint="@null"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 

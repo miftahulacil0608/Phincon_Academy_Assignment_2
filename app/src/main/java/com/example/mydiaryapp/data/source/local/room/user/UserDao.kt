@@ -1,13 +1,10 @@
-package com.example.mydiaryapp.data.source.local.room
+package com.example.mydiaryapp.data.source.local.room.user
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 import com.example.mydiaryapp.data.model.UserEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {

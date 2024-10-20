@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -41,57 +42,68 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val toolbarActivity = (activity as AppCompatActivity)
-        toolbarActivity.setSupportActionBar(binding.toolbar)
-        toolbarActivity.supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarActivity.supportActionBar?.setHomeButtonEnabled(true)
-        toolbarActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        toolbarSetup()
+        buttonBackSetup()
+        buttonBackTopSetup()
 
         binding.labelAlternativeAuthentication.setOnClickListener {
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container_authentication, LoginFragment())
-                .addToBackStack(null)
-                .commit()
+            parentFragmentManager.popBackStack()
         }
-
 
         binding.btnRegister.setOnClickListener {
             val username = binding.inputEditUsername.text.toString()
             val email = binding.inputEditEmail.text.toString()
             val password = binding.inputEditPassword.text.toString()
-            /*lifecycleScope.launch {
-                database.userDao().addUser(UserEntity(id = null, username, email, password))
-            }*/
 
-            lifecycleScope.launch {
-                val isValid = authenticationViewModel.registerNewAccount(User(username=username, email=email, password = password))
-                if (isValid){
+            viewLifecycleOwner.lifecycleScope.launch {
+                val isValid = authenticationViewModel.registerNewAccount(
+                    User(
+                        username = username,
+                        email = email,
+                        password = password
+                    )
+                )
+                if (isValid) {
                     startActivity(Intent(requireActivity(), DashboardActivity::class.java))
                     requireActivity().finish()
-                }else{
+                } else {
                     Toast.makeText(requireActivity(), "data dobel", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            //clear menggunakan callback aja gak masalah
         }
 
     }
 
-    //TODO dispatcher bisa dirubah ko nanti
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                true
-            }
-            else -> {
-                false
-            }
-        }
+    //Toolbar setup
+    private fun toolbarSetup() {
+        val toolbarActivity = (activity as AppCompatActivity)
+        toolbarActivity.setSupportActionBar(binding.toolbar)
+        toolbarActivity.supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbarActivity.supportActionBar?.setHomeButtonEnabled(true)
+        toolbarActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
 
+    //ButtonBackTop setup
+    private fun buttonBackTopSetup(){
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback = object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    parentFragmentManager.popBackStack()
+                }
+            }
+        )
+    }
+
+    //Button back setup
+    private fun buttonBackSetup() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback = object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finish()
+                }
+            })
     }
 
     override fun onDestroyView() {

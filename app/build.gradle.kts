@@ -48,6 +48,8 @@ android {
 dependencies {
 
     //livedata
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     //viewmodel
     //room
     implementation(libs.androidx.room.runtime)

@@ -5,16 +5,18 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
-import com.example.mydiaryapp.data.repository.AuthRepository
-import com.example.mydiaryapp.data.repository.AuthRepositoryImpl
-import com.example.mydiaryapp.data.source.local.datastore.LocalDataSourceAccountPreferencesImpl
-import com.example.mydiaryapp.data.source.local.datastore.LocalDataSourceAccountPreferencesRepository
-import com.example.mydiaryapp.data.source.local.datastore.SharedPreferencesDataStore
+import com.example.mydiaryapp.data.repository.UserDiaryRepository
+import com.example.mydiaryapp.data.repository.UserDiaryRepositoryImpl
+import com.example.mydiaryapp.data.repository.DiaryRepository
+import com.example.mydiaryapp.data.repository.DiaryRepositoryImpl
+import com.example.mydiaryapp.data.source.local.datastore.UserDiaryDataStoreImpl
+import com.example.mydiaryapp.data.source.local.datastore.UserDiaryDataStoreRepository
+import com.example.mydiaryapp.data.source.local.datastore.UserDiarySettingSharedPreferencesDataStore
 import com.example.mydiaryapp.data.source.local.room.DiaryDatabase
-import com.example.mydiaryapp.data.source.local.room.LocalDataAccountUserImpl
-import com.example.mydiaryapp.data.source.local.room.LocalDataAccountUserRepository
-import com.example.mydiaryapp.domain.AuthenticationUseCase
-import com.example.mydiaryapp.presentation.authentication.AuthenticationViewModel
+import com.example.mydiaryapp.data.source.local.room.diary.DiaryRoomImpl
+import com.example.mydiaryapp.data.source.local.room.diary.DiaryRoomRepository
+import com.example.mydiaryapp.data.source.local.room.user.UserRoomImpl
+import com.example.mydiaryapp.data.source.local.room.user.UserRoomRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,10 +42,14 @@ object Module {
         return context.dataStoreContext
     }
 
+    /*@Provides
+    @Singleton
+    fun provideDiarySharedPreferencesDataStore()*/
+
     @Provides
     @Singleton
-    fun provideSharedPreferencesDataStore(dataStoreContext: DataStore<Preferences>): SharedPreferencesDataStore {
-        return SharedPreferencesDataStore(dataStoreContext)
+    fun provideSharedPreferencesDataStore(dataStoreContext: DataStore<Preferences>): UserDiarySettingSharedPreferencesDataStore {
+        return UserDiarySettingSharedPreferencesDataStore(dataStoreContext)
     }
 
     @Provides
@@ -58,31 +64,46 @@ object Module {
 
     @Provides
     @Singleton
-    fun provideLocalDataSourceAccountPreferencesRepository(dataStoreSharedPreferences: SharedPreferencesDataStore): LocalDataSourceAccountPreferencesRepository {
-        return LocalDataSourceAccountPreferencesImpl(dataStoreSharedPreferences)
+    fun provideLocalDataSourceAccountPreferencesRepository(dataStoreSharedPreferences: UserDiarySettingSharedPreferencesDataStore): UserDiaryDataStoreRepository {
+        return UserDiaryDataStoreImpl(dataStoreSharedPreferences)
     }
 
     @Provides
     @Singleton
-    fun provideLocalDataAccountUserRepository(diaryDataBase: DiaryDatabase): LocalDataAccountUserRepository {
-        return LocalDataAccountUserImpl(diaryDataBase)
+    fun provideLocalDataAccountUserRepository(diaryDataBase: DiaryDatabase): UserRoomRepository {
+        return UserRoomImpl(diaryDataBase)
     }
 
     @Provides
     @Singleton
     fun provideAuthRepository(
-        localDataAccountUserRepository: LocalDataAccountUserRepository,
-        localDataSourceAccountPreferencesRepository: LocalDataSourceAccountPreferencesRepository
-    ): AuthRepository {
-        return AuthRepositoryImpl(
-            localDataAccountUserRepository,
-            localDataSourceAccountPreferencesRepository
+        userRoomRepository: UserRoomRepository,
+        userDiaryDataStoreRepository: UserDiaryDataStoreRepository
+    ): UserDiaryRepository {
+        return UserDiaryRepositoryImpl(
+            userRoomRepository,
+            userDiaryDataStoreRepository
         )
     }
 
     @Provides
     @Singleton
-    fun provideAuthUseCase(authRepository: AuthRepository):AuthenticationUseCase{
+    fun provideLocalDataDiaryRepository(database:DiaryDatabase):DiaryRoomRepository{
+        return DiaryRoomImpl(database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDiaryRepository(
+        diaryRoomRepository: DiaryRoomRepository,
+        userDiaryDataStoreRepository: UserDiaryDataStoreRepository
+    ): DiaryRepository {
+        return DiaryRepositoryImpl(diaryRoomRepository, userDiaryDataStoreRepository)
+    }
+
+    /*@Provides
+    @Singleton
+    fun provideAuthUseCase(authRepository: UserDiaryRepository):AuthenticationUseCase{
         return AuthenticationUseCase(authRepository)
     }
 
@@ -90,6 +111,6 @@ object Module {
     @Singleton
     fun provideAuthViewModel(authenticationUseCase: AuthenticationUseCase):AuthenticationViewModel{
         return AuthenticationViewModel(authenticationUseCase)
-    }
+    }*/
 
 }

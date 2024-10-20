@@ -1,8 +1,10 @@
 package com.example.mydiaryapp.data
 
+import com.example.mydiaryapp.data.model.DiaryEntity
+import com.example.mydiaryapp.data.model.SettingDiary
 import com.example.mydiaryapp.data.model.UserEntity
-import com.example.mydiaryapp.data.model.UserPreferencesDataStore
-import com.example.mydiaryapp.domain.model.Session
+import com.example.mydiaryapp.domain.model.Diary
+import com.example.mydiaryapp.domain.model.SettingDiaryUser
 import com.example.mydiaryapp.domain.model.User
 
 object MapperDataClass {
@@ -18,10 +20,32 @@ object MapperDataClass {
         return User(this.id, this.username, this.email, this.password)
     }
 
-    fun UserPreferencesDataStore.toSession(): Session {
-        return Session(
-            this.idUser,
-            this.username
+    fun List<DiaryEntity>.toDiary(): List<Diary> {
+        return this.map {
+            Diary(it.userOwnerId, it.diaryId, it.diaryHeadline, it.diaryMessage, diaryDate = it.diaryDate)
+        }
+    }
+    fun DiaryEntity.toDiary(): Diary {
+        return Diary(
+            this.userOwnerId,
+            this.diaryId,
+            this.diaryHeadline,
+            this.diaryMessage,
+            this.diaryDate
         )
+    }
+
+    fun Diary.toDiaryEntity(): DiaryEntity {
+        return DiaryEntity(
+            this.userOwnerId,
+            this.diaryId,
+            this.diaryHeadline,
+            this.diaryMessage,
+            this.diaryDate
+        )
+    }
+
+    fun SettingDiary.toSettingDiaryUser():SettingDiaryUser{
+        return SettingDiaryUser(this.sortBy, this.orderBy)
     }
 }

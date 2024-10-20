@@ -66,6 +66,7 @@
     <string name="label_home">Home</string>
     <string name="label_mood">Mood</string>
     <string name="label_diary">Diary</string>
+    <string name="label_update">Update</string>
     <string name="label_settings">Settings</string>
     <string name="label_view_all">View All</string>
     <string name="label_recently_added">Recently added</string>
@@ -85,4 +86,11 @@
     <string name="label_headline_personal_details">Personal details</string>
     <string name="label_account_settings">Account</string>
     <string name="label_logout">Logout</string>
+    <string name="label_date">20 October 2024</string>
+    <string name="label_filter">Filters</string>
+    <string name="label_sort_by">Sort by</string>
+    <string name="label_range">Range</string>
+    <string name="label_created_date">Created Date</string>
+    <string name="label_ascending">Ascending</string>
+    <string name="label_descending">Descending</string>
 </resources>

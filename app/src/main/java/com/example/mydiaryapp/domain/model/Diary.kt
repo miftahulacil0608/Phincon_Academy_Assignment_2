@@ -1,3 +1,13 @@
 package com.example.mydiaryapp.domain.model
 
-data class Diary(val id: Int, val headline: String, val message: String)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Diary(
+    val userOwnerId: Int,
+    val diaryId: Int,
+    val diaryHeadline: String,
+    val diaryMessage: String,
+    val diaryDate:String
+):Parcelable

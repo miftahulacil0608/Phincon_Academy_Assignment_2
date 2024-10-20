@@ -6,15 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.mydiaryapp.R
 import com.example.mydiaryapp.databinding.FragmentHomeBinding
 import com.example.mydiaryapp.databinding.FragmentSettingBinding
+import com.example.mydiaryapp.presentation.authentication.AuthenticationActivity
 import com.example.mydiaryapp.presentation.personal.PersonalActivity
 
 class SettingFragment : Fragment() {
 
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
+    private val dashBoardViewModel by activityViewModels<DashBoardViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +35,9 @@ class SettingFragment : Fragment() {
         }
 
         binding.btnEditLogout.setOnClickListener {
-            //TODO logout datanya langsung, clear semua dashboard lalu pindah ke halaman awal yaitu welcome activity
+            dashBoardViewModel.logout()
+            startActivity(Intent(requireContext(), AuthenticationActivity::class.java))
+            requireActivity().finish()
         }
     }
 

@@ -15,10 +15,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingStart="30dp"
+        android:paddingStart="32dp"
         android:paddingTop="24dp"
         android:paddingEnd="24dp"
-        android:paddingBottom="34dp">
+        android:paddingBottom="32dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/mood_user"
@@ -30,7 +30,7 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/menu"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="0dp"
             android:background="@null"
             android:src="@drawable/ic_menu"

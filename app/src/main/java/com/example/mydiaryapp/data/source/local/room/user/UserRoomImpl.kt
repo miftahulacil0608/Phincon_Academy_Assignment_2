@@ -1,13 +1,11 @@
-package com.example.mydiaryapp.data.source.local.room
+package com.example.mydiaryapp.data.source.local.room.user
 
-import android.database.sqlite.SQLiteConstraintException
 import com.example.mydiaryapp.data.model.UserEntity
-import kotlinx.coroutines.flow.Flow
+import com.example.mydiaryapp.data.source.local.room.DiaryDatabase
 import javax.inject.Inject
 
-//TODO tambahin hilt ya abis ini
-class LocalDataAccountUserImpl @Inject constructor(private val database: DiaryDatabase) :
-    LocalDataAccountUserRepository {
+class UserRoomImpl @Inject constructor(private val database: DiaryDatabase) :
+    UserRoomRepository {
     override suspend fun authUser(username: String, password: String): UserEntity? {
         return database.userDao().authUser(username, password)
     }
@@ -19,4 +17,6 @@ class LocalDataAccountUserImpl @Inject constructor(private val database: DiaryDa
     override suspend fun checkUserExist(username: String): UserEntity? {
         return database.userDao().checkUserExist(username)
     }
+
+
 }
