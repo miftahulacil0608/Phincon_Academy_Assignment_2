@@ -3,19 +3,26 @@
 
 ## FITUR
 1. Autentikasi Pengguna (Login/Logout)
-   . Pengguna dapat mendaftar, masuk, dan keluar secara aman.
+   
+   Pengguna dapat mendaftar, masuk, dan keluar secara aman.
 
-2. CRU Pengguna (Create, Read, Update)
-   . Pengguna dapat membuat akun, melihat profil, dan memperbarui informasi mereka.
+3. CRU Pengguna (Create, Read, Update)
 
-3. CRUD Diary (Create, Read, Update, Delete)
-  . Fitur lengkap untuk mengelola catatan harian, termasuk membuat, mengedit, dan menghapus catatan.
+   Pengguna dapat membuat akun, melihat profil, dan memperbarui informasi mereka.
 
-4. Pengurutan (Sorting)
-  . Pengguna dapat mengurutkan catatan harian berdasarkan:
-      . Judul (Ascending/Descending)
-      . Tanggal (Ascending/Descending)
-      . Pencarian (Search)
+4. CRUD Diary (Create, Read, Update, Delete)
+
+   Fitur lengkap untuk mengelola catatan harian, termasuk membuat, mengedit, dan menghapus catatan.
+
+5. Pengurutan (Sorting)
+   
+   Pengguna dapat mengurutkan catatan harian berdasarkan:
+
+      Judul (Ascending/Descending)
+
+      Tanggal (Ascending/Descending)
+
+      Pencarian (Search)
 
   . Pengguna dapat mencari catatan harian berdasarkan:
       . Judul
