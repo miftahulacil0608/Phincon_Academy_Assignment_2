@@ -18,15 +18,12 @@
 
    Pengguna dapat mengurutkan catatan harian berdasarkan:
 
-         Judul (Ascending/Descending)
-
-         Tanggal (Ascending/Descending)
+   - Judul (Ascending/Descending)
+   - Tanggal (Ascending/Descending)
 7. Pencarian (Search)
-
    Pengguna dapat mencari catatan harian berdasarkan:
-
-         Judul
-         Tanggal pembuatan
+   - Judul
+   - Tanggal pembuatan
 
 ## Struktur Aplikasi
 1. Splashscreen Activity
@@ -37,32 +34,32 @@
 
    Aktivitas onboarding dengan 4 fragment:
 
-         Fragment OneBoarding
+   - Fragment OneBoarding
 
-         Fragment TwoBoarding
+   - Fragment TwoBoarding
   
-         Fragment ThreeBoarding
+   - Fragment ThreeBoarding
 
-         Fragment FourBoarding
+   - Fragment FourBoarding
 
 4. Authentication Activity
 
    Aktivitas otentikasi pengguna:
 
-         Login Fragment
+   - Login Fragment
 
-         Register Fragment
+   - Register Fragment
 
 6. Dashboard Activity (dengan bottom navigation manual)
 
    Navigasi utama dalam aplikasi dengan beberapa fragment:
 
-         Home Fragment
-         Mood Fragment
-         Add Diary Fragment
-         Diary List Fragment
-         Detail Diary Fragment (terhubung dengan Diary List)
-         Setting Fragment
+   - Home Fragment
+   - Mood Fragment
+   - Add Diary Fragment
+   - Diary List Fragment
+   - Detail Diary Fragment (terhubung dengan Diary List)
+   - Setting Fragment
    
 7. Add Update Activity
 
@@ -76,18 +73,12 @@
 
 Proyek ini menggunakan Clean Architecture dengan Dependency Injection (Hilt). Komponen arsitektur ini terdiri dari:
 
-      Domain Layer: Berisi UseCases yang mengatur logika bisnis utama.
-      
-      Data Layer: Menggunakan Repository untuk mengelola data, dengan implementasi local storage menggunakan Room.
-      
-      Presentation Layer: Menggunakan ViewModel untuk mengelola data yang ditampilkan di UI, serta LiveData dan StateFlow untuk memperbarui UI secara reaktif.
+   - Domain Layer: Berisi UseCases yang mengatur logika bisnis utama.
+   - Data Layer: Menggunakan Repository untuk mengelola data, dengan implementasi local storage menggunakan Room.
+   - Presentation Layer: Menggunakan ViewModel untuk mengelola data yang ditampilkan di UI, serta LiveData dan StateFlow untuk memperbarui UI secara reaktif.
 
 ## Teknologi yang Digunakan:
-  
-     Room database untuk penyimpanan data lokal
-     
-     DataStore untuk menyimpan preferensi (misalnya pengaturan sorting pengguna)
-     
-     Kotlin Coroutines untuk operasi asinkron
-     
-     Hilt untuk Dependency Injection
+   - Room database untuk penyimpanan data lokal
+   - DataStore untuk menyimpan preferensi (misalnya pengaturan sorting pengguna)
+   - Kotlin Coroutines untuk operasi asinkron
+   - Hilt untuk Dependency Injection
