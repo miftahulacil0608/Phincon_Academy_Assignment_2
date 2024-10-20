@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    tools:context=".presentation.dashboard.DetailDiaryFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_item_detail_diary">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextStyle.SmallHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="26dp"
+            android:text="@string/label_title_detail_diary" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_title_date"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        style="@style/TextStyle.SmallHeading"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_custom_searchview"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardview_diary"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_date">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="32dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="32dp">
+
+
+            <LinearLayout
+                android:id="@+id/layout_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_custom_date"
+                android:backgroundTint="#00FFFF"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_clock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_clcok" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_date"
+                    style="@style/TextStyle.Title.Small"
+                    android:fontFamily="@font/manrope_regular"
+                    tools:text="15 Oktober 2024" />
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_item_diary"
+                style="@style/TextStyle.Title.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/label_title_item_diary"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/layout_date" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/description_item_diary"
+                style="@style/TextStyle.SmallHeading"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:ellipsize="end"
+                android:text="@string/label_detail_diary"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_item_diary"
+                tools:layout_editor_absoluteX="30dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
